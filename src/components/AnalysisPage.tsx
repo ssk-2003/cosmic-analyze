@@ -214,11 +214,26 @@ const TopicModelingSection: React.FC = () => {
 
 const ClassificationMetrics: React.FC = () => {
   const metricsData = [
-    { metric: 'Accuracy', value: 0.94, rawValue: 12087, total: 12847, color: 'hsl(120 60% 45%)' },
-    { metric: 'Precision', value: 0.91, rawValue: 11691, total: 12847, color: 'hsl(30 45% 50%)' },
-    { metric: 'Recall', value: 0.88, rawValue: 11305, total: 12847, color: 'hsl(340 55% 55%)' },
-    { metric: 'F1-Score', value: 0.89, rawValue: 11434, total: 12847, color: 'hsl(200 60% 45%)' }
+    { metric: 'Accuracy', value: 0.94, rawValue: 0.94, color: 'hsl(120 60% 45%)' },
+    { metric: 'Precision', value: 0.91, rawValue: 0.91, color: 'hsl(30 45% 50%)' },
+    { metric: 'Recall', value: 0.88, rawValue: 0.88, color: 'hsl(340 55% 55%)' },
+    { metric: 'F1-Score', value: 0.89, rawValue: 0.89, color: 'hsl(200 60% 45%)' }
   ];
+
+  // Heatmap data for confusion matrix
+  const heatmapData = [
+    { actual: 'Positive', predicted: 'Positive', value: 0.85, count: 2847 },
+    { actual: 'Positive', predicted: 'Neutral', value: 0.12, count: 402 },
+    { actual: 'Positive', predicted: 'Negative', value: 0.03, count: 101 },
+    { actual: 'Neutral', predicted: 'Positive', value: 0.15, count: 378 },
+    { actual: 'Neutral', predicted: 'Neutral', value: 0.78, count: 1964 },
+    { actual: 'Neutral', predicted: 'Negative', value: 0.07, count: 176 },
+    { actual: 'Negative', predicted: 'Positive', value: 0.08, count: 94 },
+    { actual: 'Negative', predicted: 'Neutral', value: 0.22, count: 258 },
+    { actual: 'Negative', predicted: 'Negative', value: 0.70, count: 822 }
+  ];
+
+  const classes = ['Positive', 'Neutral', 'Negative'];
 
   return (
     <div className="space-y-6">
@@ -256,14 +271,9 @@ const ClassificationMetrics: React.FC = () => {
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-sm font-bold" style={{ color: metric.color }}>
-                        {metric.rawValue}
-                      </div>
-                      <div className="text-xs opacity-70">
-                        /{metric.total}
-                      </div>
-                    </div>
+                    <span className="text-lg font-bold" style={{ color: metric.color }}>
+                      {metric.rawValue.toFixed(2)}
+                    </span>
                   </div>
                 </div>
                 <h4 className="font-semibold text-sm">{metric.metric}</h4>
@@ -300,6 +310,86 @@ const ClassificationMetrics: React.FC = () => {
               <Line type="monotone" dataKey="loss" stroke="hsl(0 65% 50%)" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      {/* Confusion Matrix Heatmap */}
+      <Card className="glass-nature">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Target className="w-5 h-5 text-primary" />
+            Confusion Matrix Heatmap
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-4 gap-2 max-w-md mx-auto">
+            {/* Header row */}
+            <div className="text-center text-sm font-semibold text-muted-foreground">Predicted →</div>
+            {classes.map(cls => (
+              <div key={cls} className="text-center text-sm font-semibold text-muted-foreground p-2">
+                {cls}
+              </div>
+            ))}
+            
+            {/* Data rows */}
+            {classes.map((actualClass, rowIndex) => (
+              <React.Fragment key={actualClass}>
+                {rowIndex === 0 && (
+                  <div className="text-center text-sm font-semibold text-muted-foreground transform -rotate-90 flex items-center justify-center">
+                    Actual ↓
+                  </div>
+                )}
+                {rowIndex > 0 && <div />}
+                <div className="text-center text-sm font-semibold text-muted-foreground p-2">
+                  {actualClass}
+                </div>
+                {classes.map(predictedClass => {
+                  const cell = heatmapData.find(
+                    d => d.actual === actualClass && d.predicted === predictedClass
+                  );
+                  const intensity = cell ? cell.value : 0;
+                  const isCorrect = actualClass === predictedClass;
+                  
+                  return (
+                    <motion.div
+                      key={`${actualClass}-${predictedClass}`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: (rowIndex * 3 + classes.indexOf(predictedClass)) * 0.05 }}
+                      className={`
+                        aspect-square flex flex-col items-center justify-center text-xs font-bold rounded-lg
+                        border transition-all duration-300 hover:scale-110 cursor-pointer
+                        ${isCorrect ? 'border-primary/50' : 'border-muted/30'}
+                      `}
+                      style={{
+                        backgroundColor: isCorrect 
+                          ? `hsl(120 60% ${45 + intensity * 20}%)` 
+                          : `hsl(0 60% ${30 + intensity * 30}%)`,
+                        color: intensity > 0.5 ? 'white' : 'hsl(var(--foreground))'
+                      }}
+                    >
+                      <span>{cell?.value.toFixed(2) || '0.00'}</span>
+                      <span className="text-xs opacity-80">({cell?.count || 0})</span>
+                    </motion.div>
+                  );
+                })}
+              </React.Fragment>
+            ))}
+          </div>
+          
+          {/* Legend */}
+          <div className="mt-6 flex justify-center">
+            <div className="flex items-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded bg-green-500"></div>
+                <span>Correct Predictions</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded bg-red-500"></div>
+                <span>Incorrect Predictions</span>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>

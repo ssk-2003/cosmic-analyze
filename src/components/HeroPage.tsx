@@ -40,7 +40,6 @@ const HeroPage: React.FC<HeroPageProps> = ({ onGetStarted }) => {
 
   const stats = [
     { value: "99.9%", label: "Accuracy Rate", icon: Target },
-    { value: "15.2K+", label: "Datasets Analyzed", icon: Brain },
     { value: "50ms", label: "Average Response", icon: Zap },
     { value: "24/7", label: "AI Processing", icon: Rocket }
   ];
@@ -211,7 +210,7 @@ const HeroPage: React.FC<HeroPageProps> = ({ onGetStarted }) => {
         </div>
 
         {/* Enhanced Stats Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
             <motion.div 
               key={index}
