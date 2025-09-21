@@ -59,11 +59,16 @@ export default {
         'gradient-cosmic': 'var(--gradient-cosmic)',
         'gradient-neon': 'var(--gradient-neon)',
         'gradient-hero': 'var(--gradient-hero)',
+        'gradient-glass': 'var(--gradient-glass)',
       },
       boxShadow: {
         'glow-primary': 'var(--glow-primary)',
         'glow-secondary': 'var(--glow-secondary)',
         'glow-accent': 'var(--glow-accent)',
+        'glass': 'var(--glass-shadow)',
+      },
+      backdropFilter: {
+        'glass': 'blur(16px) saturate(180%)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -107,6 +112,19 @@ export default {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        "cursor-pulse": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.2)" },
+        },
+        "button-press": {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(0.95)" },
+          "100%": { transform: "scale(1)" },
+        },
+        "glass-shine": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -118,6 +136,9 @@ export default {
         "fade-in": "fade-in 0.3s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
         "gradient-shift": "gradient-shift 3s ease infinite",
+        "cursor-pulse": "cursor-pulse 1s ease-in-out infinite",
+        "button-press": "button-press 0.2s ease-in-out",
+        "glass-shine": "glass-shine 2s ease-in-out infinite",
       },
     },
   },

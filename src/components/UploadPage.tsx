@@ -230,7 +230,7 @@ const UploadPage: React.FC<UploadPageProps> = ({ onBack, onUploadComplete }) => 
                           accept={ACCEPTED_TYPES.join(',')}
                           onChange={handleFileInput}
                         />
-                        <Button variant="forest" asChild>
+                        <Button variant="premium" asChild>
                           <label htmlFor="file-upload" className="cursor-pointer">
                             Browse Files
                           </label>
@@ -266,7 +266,7 @@ const UploadPage: React.FC<UploadPageProps> = ({ onBack, onUploadComplete }) => 
                           )}
 
                           <Button
-                            variant="nature"
+                            variant="hero"
                             onClick={simulateUpload}
                             disabled={isUploading}
                             className="w-full"
