@@ -214,10 +214,10 @@ const TopicModelingSection: React.FC = () => {
 
 const ClassificationMetrics: React.FC = () => {
   const metricsData = [
-    { metric: 'Accuracy', value: 0.94, color: 'hsl(120 60% 45%)' },
-    { metric: 'Precision', value: 0.91, color: 'hsl(30 45% 50%)' },
-    { metric: 'Recall', value: 0.88, color: 'hsl(340 55% 55%)' },
-    { metric: 'F1-Score', value: 0.89, color: 'hsl(200 60% 45%)' }
+    { metric: 'Accuracy', value: 0.94, rawValue: 12087, total: 12847, color: 'hsl(120 60% 45%)' },
+    { metric: 'Precision', value: 0.91, rawValue: 11691, total: 12847, color: 'hsl(30 45% 50%)' },
+    { metric: 'Recall', value: 0.88, rawValue: 11305, total: 12847, color: 'hsl(340 55% 55%)' },
+    { metric: 'F1-Score', value: 0.89, rawValue: 11434, total: 12847, color: 'hsl(200 60% 45%)' }
   ];
 
   return (
@@ -256,9 +256,14 @@ const ClassificationMetrics: React.FC = () => {
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-lg font-bold" style={{ color: metric.color }}>
-                      {(metric.value * 100).toFixed(0)}%
-                    </span>
+                    <div className="text-center">
+                      <div className="text-sm font-bold" style={{ color: metric.color }}>
+                        {metric.rawValue}
+                      </div>
+                      <div className="text-xs opacity-70">
+                        /{metric.total}
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <h4 className="font-semibold text-sm">{metric.metric}</h4>

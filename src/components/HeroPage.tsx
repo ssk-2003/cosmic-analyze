@@ -40,7 +40,7 @@ const HeroPage: React.FC<HeroPageProps> = ({ onGetStarted }) => {
 
   const stats = [
     { value: "99.9%", label: "Accuracy Rate", icon: Target },
-    { value: "10K+", label: "Datasets Analyzed", icon: Brain },
+    { value: "15.2K+", label: "Datasets Analyzed", icon: Brain },
     { value: "50ms", label: "Average Response", icon: Zap },
     { value: "24/7", label: "AI Processing", icon: Rocket }
   ];
