@@ -387,7 +387,7 @@ const ReportsSection: React.FC = () => {
                 <report.icon className="w-12 h-12 text-primary mx-auto mb-4" />
                 <h3 className="font-semibold text-lg mb-2">{report.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4">{report.description}</p>
-                <Button variant="forest" size="sm" className="w-full">
+                <Button variant="premium" size="sm" className="w-full">
                   <Download className="w-4 h-4 mr-2" />
                   Generate PDF
                 </Button>
@@ -605,11 +605,11 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ onBack, uploadedFile }) => 
             </div>
             
             <div className="flex items-center gap-2">
-              <Button variant="nature" size="sm">
+              <Button variant="glass" size="sm">
                 <Share className="w-4 h-4 mr-2" />
                 Share
               </Button>
-              <Button variant="forest" size="sm">
+              <Button variant="premium" size="sm">
                 <Download className="w-4 h-4 mr-2" />
                 Export
               </Button>
@@ -621,7 +621,7 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ onBack, uploadedFile }) => 
             {sections.map((section) => (
               <Button
                 key={section.id}
-                variant={activeSection === section.id ? "forest" : "ghost"}
+                variant={activeSection === section.id ? "premium" : "ghost"}
                 size="sm"
                 onClick={() => setActiveSection(section.id)}
                 className="flex items-center gap-2 whitespace-nowrap"
