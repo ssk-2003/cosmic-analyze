@@ -18,7 +18,8 @@ const buttonVariants = cva(
         // Futuristic variants
         hero: "bg-gradient-neon text-white font-semibold shadow-glow-primary hover:shadow-glow-accent hover:scale-105 transition-all duration-300 border border-card-border backdrop-blur-sm",
         neon: "bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-glow-primary transition-all duration-300",
-        cosmic: "bg-background-secondary border border-card-border text-foreground hover:border-primary hover:shadow-glow-primary transition-all duration-300 backdrop-blur-sm",
+        nature: "bg-gradient-neon text-primary-foreground hover:opacity-90 shadow-glow-primary transition-all duration-300",
+        forest: "bg-primary text-primary-foreground hover:bg-primary-glow hover:shadow-glow-primary transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",

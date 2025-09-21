@@ -2,63 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Futuristic Design System - 21st.dev inspired
+/* Nature Design System - Forest & Earth Tones
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Cosmic Dark Background System */
-    --background: 220 100% 2%;
-    --background-secondary: 225 50% 8%;
-    --foreground: 210 100% 98%;
+    /* Nature Dark Background System */
+    --background: 140 20% 8%;
+    --background-secondary: 145 25% 12%;
+    --foreground: 60 30% 96%;
 
     /* Card System with Glass Effect */
-    --card: 225 50% 8%;
-    --card-foreground: 210 100% 98%;
-    --card-border: 200 100% 20%;
+    --card: 145 25% 12%;
+    --card-foreground: 60 30% 96%;
+    --card-border: 120 30% 25%;
 
     /* Popover System */
-    --popover: 225 50% 8%;
-    --popover-foreground: 210 100% 98%;
+    --popover: 145 25% 12%;
+    --popover-foreground: 60 30% 96%;
 
-    /* Neon Primary System */
-    --primary: 180 100% 50%;
-    --primary-foreground: 220 100% 2%;
-    --primary-glow: 180 100% 70%;
+    /* Forest Primary System */
+    --primary: 120 60% 45%;
+    --primary-foreground: 140 20% 8%;
+    --primary-glow: 120 60% 65%;
 
-    /* Purple Secondary System */
-    --secondary: 270 100% 60%;
-    --secondary-foreground: 210 100% 98%;
-    --secondary-glow: 270 100% 80%;
+    /* Earth Secondary System */
+    --secondary: 30 45% 50%;
+    --secondary-foreground: 60 30% 96%;
+    --secondary-glow: 30 45% 70%;
 
-    /* Pink Accent System */
-    --accent: 320 100% 60%;
-    --accent-foreground: 210 100% 98%;
-    --accent-glow: 320 100% 80%;
+    /* Bloom Accent System */
+    --accent: 340 55% 55%;
+    --accent-foreground: 60 30% 96%;
+    --accent-glow: 340 55% 75%;
 
     /* Muted System */
-    --muted: 225 20% 20%;
-    --muted-foreground: 210 20% 70%;
+    --muted: 140 15% 25%;
+    --muted-foreground: 120 15% 65%;
 
     /* Destructive System */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 100% 98%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 60 30% 96%;
 
     /* Border and Input System */
-    --border: 200 100% 20%;
-    --input: 225 50% 12%;
-    --ring: 180 100% 50%;
+    --border: 120 30% 25%;
+    --input: 145 25% 15%;
+    --ring: 120 60% 45%;
 
-    /* Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(220 100% 2%) 0%, hsl(225 50% 8%) 50%, hsl(200 100% 4%) 100%);
-    --gradient-neon: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(270 100% 60%) 50%, hsl(320 100% 60%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(180 100% 50% / 0.1) 0%, hsl(270 100% 60% / 0.1) 50%, hsl(320 100% 60% / 0.1) 100%);
+    /* Nature Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(140 20% 8%) 0%, hsl(145 25% 12%) 50%, hsl(120 30% 10%) 100%);
+    --gradient-neon: linear-gradient(135deg, hsl(120 60% 45%) 0%, hsl(30 45% 50%) 50%, hsl(340 55% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(120 60% 45% / 0.1) 0%, hsl(30 45% 50% / 0.1) 50%, hsl(340 55% 55% / 0.1) 100%);
 
-    /* Glow Effects */
-    --glow-primary: 0 0 20px hsl(180 100% 50% / 0.3), 0 0 40px hsl(180 100% 50% / 0.2);
-    --glow-secondary: 0 0 20px hsl(270 100% 60% / 0.3), 0 0 40px hsl(270 100% 60% / 0.2);
-    --glow-accent: 0 0 20px hsl(320 100% 60% / 0.3), 0 0 40px hsl(320 100% 60% / 0.2);
+    /* Nature Glow Effects */
+    --glow-primary: 0 0 20px hsl(120 60% 45% / 0.3), 0 0 40px hsl(120 60% 45% / 0.2);
+    --glow-secondary: 0 0 20px hsl(30 45% 50% / 0.3), 0 0 40px hsl(30 45% 50% / 0.2);
+    --glow-accent: 0 0 20px hsl(340 55% 55% / 0.3), 0 0 40px hsl(340 55% 55% / 0.2);
 
     /* Animation Speeds */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -75,6 +75,99 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground relative overflow-x-hidden;
+  }
+
+  /* Animated Nature Background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 50%, hsl(120 60% 45% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(30 45% 50% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(340 55% 55% / 0.1) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  /* Floating particles */
+  .nature-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .nature-particles::before,
+  .nature-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: hsl(120 60% 45% / 0.6);
+    border-radius: 50%;
+    animation: particles 15s linear infinite;
+  }
+
+  .nature-particles::before {
+    left: 10%;
+    animation-delay: -5s;
+  }
+
+  .nature-particles::after {
+    left: 70%;
+    animation-delay: -10s;
+  }
+
+  @keyframes particles {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+}
+
+@layer components {
+  /* Glass morphism for nature theme */
+  .glass-nature {
+    background: hsl(145 25% 12% / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(120 30% 25% / 0.3);
+  }
+
+  /* Nature glow effects */
+  .glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-pulse {
+    from {
+      box-shadow: var(--glow-primary);
+    }
+    to {
+      box-shadow: var(--glow-primary), var(--glow-primary);
+    }
   }
 }
